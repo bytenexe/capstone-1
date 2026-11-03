@@ -31,16 +31,22 @@ public class DadloonDock {
 
             String choice = scanner.nextLine().trim().toUpperCase();
 
-            if (choice.equals("D")) {
-                addDeposit();
-            } else if (choice.equals("P")) {
-                makePayment();
-            } else if (choice.equals("L")) {
-                ledgerScreen();
-            } else if (choice.equals("X")) {
-                running = false;
-            } else {
-                System.out.println("That is not a heading, sailor. Try D, P, L, or X.");
+            switch (choice) {
+                case "D":
+                    addDeposit();
+                    break;
+                case "P":
+                    makePayment();
+                    break;
+                case "L":
+                    ledgerScreen();
+                    break;
+                case "X":
+                    running = false;
+                    break;
+                default:
+                    System.out.println("That is not a heading, sailor. Try D, P, L, or X.");
+                    break;
             }
         }
     }
@@ -58,16 +64,12 @@ public class DadloonDock {
 
             String choice = scanner.nextLine().trim().toUpperCase();
 
-            if (choice.equals("A")) {
-                displayTransactions("FULL LOG", captainsLog.getAll());
-            } else if (choice.equals("D")) {
-                displayTransactions("JOKES TOLD", captainsLog.getDeposits());
-            } else if (choice.equals("P")) {
-                displayTransactions("DADLOONS SPENT", captainsLog.getPayments());
-            } else if (choice.equals("H")) {
-                running = false;
-            } else {
-                System.out.println("That is not a heading, sailor. Try A, D, P, or H.");
+            switch (choice) {
+                case "A" -> displayTransactions("FULL LOG", captainsLog.getAll());
+                case "D" -> displayTransactions("JOKES TOLD", captainsLog.getDeposits());
+                case "P" -> displayTransactions("DADLOONS SPENT", captainsLog.getPayments());
+                case "H" -> running = false;
+                default -> System.out.println("That is not a heading, sailor. Try A, D, P, or H.");
             }
         }
     }
