@@ -32,21 +32,11 @@ public class DadloonDock {
             String choice = scanner.nextLine().trim().toUpperCase();
 
             switch (choice) {
-                case "D":
-                    addDeposit();
-                    break;
-                case "P":
-                    makePayment();
-                    break;
-                case "L":
-                    ledgerScreen();
-                    break;
-                case "X":
-                    running = false;
-                    break;
-                default:
-                    System.out.println("That is not a heading, sailor. Try D, P, L, or X.");
-                    break;
+                case "D" -> addDeposit();
+                case "P" -> makePayment();
+                case "L" -> ledgerScreen();
+                case "X" -> running = false;
+                default -> System.out.println("That is not a heading, sailor. Try D, P, L, or X.");
             }
         }
     }
