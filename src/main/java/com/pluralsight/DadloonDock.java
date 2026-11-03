@@ -98,7 +98,7 @@ public class DadloonDock {
         try {
             double amount = Double.parseDouble(amountStr);
             LogEntry newEntry = new LogEntry(date, time, description, vendor, amount);
-            captainsLog.addEntry(newEntry); // Requires addEntry method in CaptainsLog
+            captainsLog.addEntry(newEntry); // 
             System.out.println("Dadloon hauled in!");
         } catch (NumberFormatException e) {
             System.out.println("Invalid amount. Please use numbers only.");
@@ -120,7 +120,7 @@ public class DadloonDock {
         try {
             double amount = Double.parseDouble(amountStr);
             LogEntry newEntry = new LogEntry(date, time, description, vendor, -amount);
-            captainsLog.addEntry(newEntry); // Requires addEntry method in CaptainsLog
+            captainsLog.addEntry(newEntry);
             System.out.println("Payment made to the Harbor Master.");
         } catch (NumberFormatException e) {
             System.out.println("Invalid amount. Please use numbers only.");
