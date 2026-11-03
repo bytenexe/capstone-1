@@ -51,7 +51,7 @@ public class CaptainsLog {
             String line;
             boolean isFirstLine = true;
 
-            // Read until there is no more data
+            // Read until there is no more data [1]
             while ((line = reader.readLine()) != null) {
                 if (isFirstLine) {
                     isFirstLine = false; // Skip header
