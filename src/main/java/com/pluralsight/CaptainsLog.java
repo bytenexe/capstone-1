@@ -3,14 +3,15 @@ package com.pluralsight;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Collections;
 
 /**
  * CaptainsLog
  * Acts as the data engine and file manager for the application.
- * Handles loading historical transactions from CSV, storing them in memory, and filtering records.
+ * Handles loading transactions from CSV, storing them in memory, and filtering records.
  */
 public class CaptainsLog {
     private List<LogEntry> entries;
@@ -24,13 +25,19 @@ public class CaptainsLog {
         loadTransactions();
     }
 
-    /**
-     * Getter method that returns the entire list of transaction entries.
-     *
-     * @return The full List of LogEntry objects.
-     */
     public List<LogEntry> getAll() {
-        return entries;
+        List<LogEntry> sortedEntries = new ArrayList<>(entries); // Create a copy so we don't change the original list order
+        sortedEntries.sort((e1, e2) -> { // Sort by date (descending), then by time (descending)
+
+            int dateCompare = e2.getDate().compareTo(e1.getDate()); // Compare dates first (newest first)
+            if (dateCompare != 0) { // If dates are the same, compare times (newest first)
+                return dateCompare;
+            }
+
+            return e2.getTime().compareTo(e1.getTime());
+        });
+
+        return sortedEntries;
     }
 
     /**
@@ -64,31 +71,31 @@ public class CaptainsLog {
     }
 
     /**
-     * Adds a new transaction entry directly to the in-memory list.
-     *
-     * @param entry The LogEntry object to add.
+     * This method takes a new LogEntry, adds it to the entries list memory and immediately saves it to the CSV file.
      */
     public void addEntry(LogEntry entry) {
-        entries.add(entry);
+        entries.add(entry);      // Add to memory first
+        saveTransactions();      // Then write the updated list to the CSV file
     }
 
     /**
-     * Safely reads the transactions.csv file line-by-line and populates the entries list.
+     * Will check if line (reader.readLine()) is NOT EQUAL TO null; once it is, stops reading because it'll be EQUAL TO null.
+     * Skips the first header using an isFirstLine boolean.
+     * entries.add(entry) saves into memory.
      */
     private void loadTransactions() {
         try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/transactions.csv"))) {
             String line;
             boolean isFirstLine = true;
 
-            // Reads lines until there are no more lines left (null)
-            while ((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) { // Reads lines until there are no more lines left (null)
                 if (isFirstLine) {
-                    isFirstLine = false; // Skips header row
+                    isFirstLine = false; // Skips header
                     continue;
                 }
 
-                /*
-                 * Splits the pipe-delimited line into array parts (date, time, vendor, description, amount),
+                /**
+                 * Splits the pipe into array parts (date, time, vendor, description, amount),
                  * converts the string amount into a double, builds a LogEntry, and saves it to memory.
                  */
                 String[] parts = line.split("\\|");
@@ -100,11 +107,41 @@ public class CaptainsLog {
                             parts[3],
                             Double.parseDouble(parts[4])
                     );
+
                     entries.add(entry);
                 }
             }
         } catch (IOException e) {
             System.out.println("Error reading the log: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Saves the current list of transactions back to the CSV file.
+     * Writes the pipe header row first ("date|time|description|vendor|amount").
+     * Loops through every entry in memory and writes it out row-by-row.
+     * Uses BufferedWriter to output data to transactions.csv.
+     */
+    public void saveTransactions() {
+        try (BufferedWriter writer = new BufferedWriter(
+                new FileWriter("src/main/resources/transactions.csv"))) {
+
+            writer.write("date|time|description|vendor|amount"); // Match the exact header from the CSV
+            writer.newLine();
+
+            for (LogEntry entry : entries) {
+                String line = entry.getDate() + "|" + // date | time | description | vendor | amount
+                        entry.getTime() + "|" +
+                        entry.getDescription() + "|" +
+                        entry.getVendor() + "|" +
+                        entry.getAmount();
+                writer.write(line);
+                writer.newLine();
+            }
+
+            System.out.println("Transactions saved successfully.");
+        } catch (IOException e) {
+            System.out.println("Error saving transactions: " + e.getMessage());
         }
     }
 }

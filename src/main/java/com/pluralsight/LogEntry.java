@@ -17,7 +17,7 @@ public class LogEntry {
     private double amount;
 
     /**
-     * Constructor (builder method) initializes all fields when a new transaction is created.
+     * Constructors (builder method) initialize all fields when a new transaction is created.
      * Object fields are null by default before the constructor gives them values.
      *
      * @param date        The date of the transaction (YYYY-MM-DD)

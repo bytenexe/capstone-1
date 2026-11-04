@@ -18,8 +18,8 @@ public class DadloonDock {
      * @param args Command line arguments (not used).
      */
     public static void main(String[] args) {
-        showBanner();
-        homeScreen();
+        showBanner(); // Used only once
+        homeScreen(); //Used only once
         System.out.println("Fair winds! Your Dadloons are safe in the vault.");
     }
 
@@ -89,7 +89,7 @@ public class DadloonDock {
     }
 
     /**
-     * Formats and prints a table of transactions with custom spacing, floating-point currency, and titles.
+     * Formats and prints a table of transactions with spacing, printing floats, and titles.
      *
      * @param title    The title banner for the transaction list.
      * @param entries  The list of LogEntry items to display.
@@ -100,7 +100,7 @@ public class DadloonDock {
             System.out.println("No entries found.");
         } else {
             for (LogEntry entry : entries) {
-                System.out.printf("%s %s | %-20s | %-30s | $%.2f%n",
+                System.out.printf("%s %s | %-20s | %-30s | $%.2f%n", // %-int is how many characters to the left field
                         entry.getDate(), entry.getTime(), entry.getVendor(), entry.getDescription(), entry.getAmount());
             }
         }
@@ -131,7 +131,7 @@ public class DadloonDock {
             captainsLog.addEntry(newEntry);
             System.out.println("Dadloon hauled in!");
         } catch (NumberFormatException e) {
-            System.out.println("Invalid amount. Please use numbers only.");
+            System.out.println("Yarr, invalid Dadloons. Please use numbers only.");
         }
     }
 
@@ -160,7 +160,7 @@ public class DadloonDock {
             captainsLog.addEntry(newEntry);
             System.out.println("Payment made to the Harbor Master.");
         } catch (NumberFormatException e) {
-            System.out.println("Invalid amount. Please use numbers only.");
+            System.out.println("Yarr, invalid Dadloons. Please use numbers only.");
         }
     }
 }
