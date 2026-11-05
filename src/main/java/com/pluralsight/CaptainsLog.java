@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -26,19 +27,11 @@ public class CaptainsLog {
     }
 
     public List<LogEntry> getAll() {
-        List<LogEntry> sortedEntries = new ArrayList<>(entries); // Create a copy so we don't change the original list order
-        sortedEntries.sort((e1, e2) -> { // Sort by date (descending), then by time (descending)
-
-            int dateCompare = e2.getDate().compareTo(e1.getDate()); // Compare dates first (newest first)
-            if (dateCompare != 0) { // If dates are the same, compare times (newest first)
-                return dateCompare;
-            }
-
-            return e2.getTime().compareTo(e1.getTime());
-        });
-
+        List<LogEntry> sortedEntries = new ArrayList<>(entries);
+        Collections.sort(sortedEntries, Collections.reverseOrder());
         return sortedEntries;
     }
+
 
     /**
      * Filters through the entries list to find all positive amounts (deposits / jokes told).
@@ -47,8 +40,8 @@ public class CaptainsLog {
      */
     public List<LogEntry> getDeposits() {
         List<LogEntry> deposits = new ArrayList<>();
-        for (LogEntry entry : entries) {
-            if (entry.getAmount() > 0) {
+        for (LogEntry entry : entries) { // For each LogEntry named entry inside the entries collection
+            if (entry.getAmount() > 0) { // greater than 0
                 deposits.add(entry);
             }
         }
