@@ -12,8 +12,7 @@ public class DadloonDock {
     private static CaptainsLog captainsLog = new CaptainsLog();
 
     /**
-     * Launches the application, displays the banner, starts the home screen menu,
-     * and prints a farewell message when exiting.
+     * Launches the application, displays the banner, starts the home screen menu and prints a farewell message when exiting.
      *
      * @param args Command line arguments (not used).
      */
@@ -32,8 +31,7 @@ public class DadloonDock {
     }
 
     /**
-     * Runs the main dock menu loop allowing the user to navigate between deposits, 
-     * payments, the ledger, or exiting the application.
+     * Runs the main dock menu loop allowing the user to navigate between deposits payments, the ledger, or exiting the application.
      */
     private static void homeScreen() {
         boolean running = true;
@@ -91,8 +89,8 @@ public class DadloonDock {
     /**
      * Formats and prints a table of transactions with spacing, printing floats, and titles.
      *
-     * @param title    The title banner for the transaction list.
-     * @param entries  The list of LogEntry items to display.
+     * @param title   The title banner for the transaction list.
+     * @param entries The list of LogEntry items to display.
      */
     private static void displayTransactions(String title, List<LogEntry> entries) {
         System.out.println("\n--- " + title + " ---");
@@ -100,8 +98,11 @@ public class DadloonDock {
             System.out.println("No entries found.");
         } else {
             for (LogEntry entry : entries) {
-                System.out.printf("%s %s | %-20s | %-30s | $%.2f%n", // %-int is how many characters to the left field
-                        entry.getDate(), entry.getTime(), entry.getVendor(), entry.getDescription(), entry.getAmount());
+                System.out.printf("%s %s | %-20s | %-30s | $%.2f%n",
+                        entry.getDate(), entry.getTime(),
+                        entry.getVendor(),
+                        entry.getDescription(),
+                        entry.getAmount());
             }
         }
     }

@@ -2,6 +2,7 @@ package com.pluralsight;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -28,7 +29,10 @@ public class CaptainsLog {
 
     public List<LogEntry> getAll() {
         List<LogEntry> sortedEntries = new ArrayList<>(entries);
-        Collections.sort(sortedEntries, Collections.reverseOrder());
+        Comparator<LogEntry> byDateThenTime = Comparator
+                .comparing(LogEntry::getDate)
+                .thenComparing(LogEntry::getTime);
+        Collections.sort(sortedEntries, byDateThenTime.reversed());
         return sortedEntries;
     }
 
@@ -36,22 +40,29 @@ public class CaptainsLog {
     /**
      * Filters through the entries list to find all positive amounts (deposits / jokes told).
      *
-     * @return A new List containing only positive LogEntry items.
+     * @return A new List containing only positive LogEntry items, sorted newest first.
      */
     public List<LogEntry> getDeposits() {
         List<LogEntry> deposits = new ArrayList<>();
-        for (LogEntry entry : entries) { // For each LogEntry named entry inside the entries collection
-            if (entry.getAmount() > 0) { // greater than 0
+        for (LogEntry entry : entries) {
+            if (entry.getAmount() > 0) {
                 deposits.add(entry);
             }
         }
+
+        // Sort the deposits list
+        Comparator<LogEntry> byDateThenTime = Comparator
+                .comparing(LogEntry::getDate)
+                .thenComparing(LogEntry::getTime);
+        Collections.sort(deposits, byDateThenTime.reversed());
+
         return deposits;
     }
 
     /**
      * Filters through the entries list to find all negative amounts (Payments / Dadloons Spent).
      *
-     * @return A new List containing only negative LogEntry items.
+     * @return A new List containing only negative LogEntry items, sorted newest first.
      */
     public List<LogEntry> getPayments() {
         List<LogEntry> payments = new ArrayList<>();
@@ -60,15 +71,21 @@ public class CaptainsLog {
                 payments.add(entry);
             }
         }
+
+        // Sort the payments list
+        Comparator<LogEntry> byDateThenTime = Comparator
+                .comparing(LogEntry::getDate)
+                .thenComparing(LogEntry::getTime);
+        Collections.sort(payments, byDateThenTime.reversed());
+
         return payments;
     }
-
     /**
      * This method takes a new LogEntry, adds it to the entries list memory and immediately saves it to the CSV file.
      */
     public void addEntry(LogEntry entry) {
         entries.add(entry);      // Add to memory first
-        saveTransactions();      // Then write the updated list to the CSV file
+        saveTransactions();      // Then write the updated list to the CSV file second
     }
 
     /**
