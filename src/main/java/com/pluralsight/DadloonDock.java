@@ -28,6 +28,30 @@ public class DadloonDock {
      * Displays the app banner title screen.
      **/
     private static void showBanner() {
+        /**
+         * Displays the app banner title screen.
+         */
+            System.out.println("""
+        |.--------------------------------.
+        || CAPTAIN DAVE'S DADLOON DOCK    |
+        || Location varies with the tide  |
+        || "Where every groan is gold"   |
+        |'--------------------------------'
+        |\\
+        | \\
+        |  \\
+        |   \\
+        |    \\
+        |_____\\
+        |
+         O      |          O 
+        /|\\     |        /|\\
+        / \\     |        / \\
+      _____________________________________
+      \\  ROSIE            DAVE           /
+       \\________________________________/
+      ~~~~ Brought to you by the good folks at JetBrains ~~~~
+        """);
         System.out.println("  CAPTAIN DAVE'S DADLOON DOCK");
         System.out.println("================================");
     }
