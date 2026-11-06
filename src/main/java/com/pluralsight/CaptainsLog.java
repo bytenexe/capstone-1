@@ -53,7 +53,7 @@ public class CaptainsLog {
         // Comparator simplifies lambdas using the :: method reference operator
         Comparator<LogEntry> byDateThenTime = Comparator // Comparison rule for LogEntry objects
                 .comparing(LogEntry::getDate) // Takes date and compares each entry; sorts ascending by default
-                .thenComparing(LogEntry::getTime); // if LogEntryDate1 == LogEntryDate2, ::getTime sorts by time
+                .thenComparing(LogEntry::getTime); // if LogEntryDate1 == LogEntryDate2, :: getTime sorts by time
         Collections.sort(deposits, byDateThenTime.reversed()); // Flips result order
 
         return deposits;
