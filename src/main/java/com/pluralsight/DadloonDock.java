@@ -98,7 +98,7 @@ public class DadloonDock {
             System.out.println("No entries found.");
         } else {
             for (LogEntry entry : entries) {
-                System.out.printf("%s %s | %-20s | %-30s | $%.2f%n",
+                System.out.printf("%s %s | %-20s | %-25s | $%.2f%n",
                         entry.getDate(), entry.getTime(),
                         entry.getVendor(),
                         entry.getDescription(),
