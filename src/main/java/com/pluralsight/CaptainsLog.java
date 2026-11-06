@@ -26,7 +26,7 @@ public class CaptainsLog {
 
     public List<LogEntry> getAll() {
         List<LogEntry> sortedEntries = new ArrayList<>(entries);
-        sortEntries(sortedEntries); // <-- Replaces the 4 lines of Comparator code
+        sortEntries(sortedEntries); 
         return sortedEntries;
     }
 
@@ -42,7 +42,7 @@ public class CaptainsLog {
                 deposits.add(entry);
             }
         }
-        sortEntries(deposits); // <-- Replaces the 4 lines of Comparator code
+        sortEntries(deposits); 
         return deposits;
     }
 
@@ -59,7 +59,7 @@ public class CaptainsLog {
                 payments.add(entry);
             }
         }
-        sortEntries(payments); // <-- Replaces the 4 lines of Comparator code
+        sortEntries(payments); 
         return payments;
     }
 
@@ -78,7 +78,7 @@ public class CaptainsLog {
                 results.add(entry);
             }
         }
-        sortEntries(results); // <-- Replaces the 4 lines of Comparator code
+        sortEntries(results); 
         return results;
     }
 
