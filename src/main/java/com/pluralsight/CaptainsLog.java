@@ -122,7 +122,7 @@ public class CaptainsLog {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Error reading the log: " + e.getMessage());
+            System.out.println("Blimey! The ledger's pages be ruined!: " + e.getMessage());
         }
     }
 
@@ -149,9 +149,9 @@ public class CaptainsLog {
                 writer.newLine();
             }
 
-            System.out.println("Transactions saved successfully.");
+            System.out.println("X marks the spot for yer Dadloons!");
         } catch (IOException e) {
-            System.out.println("Error saving transactions: " + e.getMessage());
+            System.out.println("Arr, mate! Failed to log yer Dadloons. Give 'er another haul!: " + e.getMessage());
         }
     }
 }

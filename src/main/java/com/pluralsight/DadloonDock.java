@@ -159,9 +159,9 @@ public class DadloonDock {
             double amount = Double.parseDouble(amountStr);
             LogEntry newEntry = new LogEntry(date, time, description, vendor, -amount);
             captainsLog.addEntry(newEntry);
-            System.out.println("Payment made to the Harbor Master.");
+            System.out.println("Loot surrendered to the Harbor Master.");
         } catch (NumberFormatException e) {
-            System.out.println("Yarr, invalid Dadloons. Please use numbers only.");
+            System.out.println("Yarr, invalid Dadloons. Use numbers only, or walk the plank!.");
         }
     }
 }
