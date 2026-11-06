@@ -10,6 +10,21 @@ import java.util.Scanner;
 public class DadloonDock {
     private static Scanner scanner = new Scanner(System.in);
     private static CaptainsLog captainsLog = new CaptainsLog();
+    private static void monthToDate() {
+        System.out.println("Report coming soon...");
+    }
+
+    private static void previousMonth() {
+        System.out.println("Report coming soon...");
+    }
+
+    private static void yearToDate() {
+        System.out.println("Report coming soon...");
+    }
+
+    private static void previousYear() {
+        System.out.println("Report coming soon...");
+    }
 
     /**
      * Launches the application, displays the banner, starts the home screen menu and prints a farewell message when exiting.
@@ -117,8 +132,6 @@ public class DadloonDock {
         }
     }
 
-
-
     /**
      * Formats and prints a table of transactions with spacing, printing floats, and titles.
      *
@@ -196,5 +209,15 @@ public class DadloonDock {
         } catch (NumberFormatException e) {
             System.out.println("Yarr, invalid Dadloons. Use numbers only, or walk the plank!.");
         }
+    }
+
+    /**
+     * Prompts user to enter a vendor and displays a specific vendor by calling the captainsLog object.
+     */
+    private static void searchByVendor() {
+        System.out.print("Enter vendor name: ");
+        String vendor = scanner.nextLine().trim();
+        List<LogEntry> results = captainsLog.getEntriesByVendor(vendor);
+        displayTransactions("VENDOR: " + vendor.toUpperCase(), results);
     }
 }

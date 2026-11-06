@@ -1,9 +1,6 @@
 package com.pluralsight;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -16,6 +13,7 @@ import java.io.IOException;
  * Handles loading transactions from CSV, storing them in memory, and filtering records.
  */
 public class CaptainsLog {
+    Scanner scanner = new Scanner(System.in);
     private List<LogEntry> entries;
 
     /**
@@ -35,7 +33,6 @@ public class CaptainsLog {
         Collections.sort(sortedEntries, byDateThenTime.reversed()); // Flips result order
         return sortedEntries;
     }
-
 
     /**
      * Filters through the entries list to find all positive amounts (deposits / jokes told).
@@ -86,6 +83,16 @@ public class CaptainsLog {
     public void addEntry(LogEntry entry) {
         entries.add(entry);      // Add to memory first
         saveTransactions();      // Then write the updated list to the CSV file second
+    }
+
+    public List<LogEntry> getEntriesByVendor(String vendor) {
+        List<LogEntry> results = new ArrayList<>();
+        for (LogEntry entry : entries) {
+            if (entry.getVendor().equalsIgnoreCase(vendor)) {
+                results.add(entry);
+            }
+        }
+        return results;
     }
 
     /**
