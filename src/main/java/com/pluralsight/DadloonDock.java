@@ -44,11 +44,11 @@ public class DadloonDock {
         |    \\
         |_____\\
         |
-         O      |          O 
-        /|\\     |        /|\\
-        / \\     |        / \\
+        |     O               O 
+        |    /|\\             /|\\
+        |    / \\             / \\
       _____________________________________
-      \\  ROSIE            DAVE           /
+      \\  ROSIE                 DAVE      /
        \\________________________________/
       ~~~~ Brought to you by the good folks at JetBrains ~~~~
         """);
