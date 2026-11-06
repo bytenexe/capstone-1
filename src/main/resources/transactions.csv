@@ -1,10 +1,11 @@
 date|time|description|vendor|amount
-2026-10-01|09:12:04|Why do Java developers wear glasses? Because they can't C#|Dave|5.0
-2026-10-03|18:30:45|I'd tell you a UDP joke, but you might not get it|Dave|3.0
-2026-10-04|12:10:22|Said I was embarazada instead of embarrassed|Dave|6.0
-2026-10-06|11:05:20|Marina Berth Fee|Harbor Master|-12.0
-2026-10-09|14:22:41|What is a pirate's favorite programming language? It's the C|Dave|8.0
-2026-10-11|10:30:00|Spanish Lessons (no return on investment)|Language School|-5.0
-2026-10-14|19:44:12|Why did the dev refuse to leave Loch Ness? A monster merge conflict|Dave|7.0
-2026-10-16|08:15:33|Diesel Top-Up|Dockside Fuel|-9.5
-2026-10-20|19:02:10|Sailed into a null pointer and ran aground|Dave|12.0
+2026-12-19|09:12:04|Why do Java developers wear glasses? Because they can't C#|Dave|5.0
+2026-08-03|18:30:45|I'd tell you a UDP joke, but you might not get it|Dave|3.0
+2025-10-04|12:10:22|Said I was embarazada instead of embarrassed|Dave|6.0
+2025-09-06|11:05:20|Marina Berth Fee|Harbor Master|-12.0
+2026-11-06|14:22:41|What is a pirate's favorite programming language? It's the C|Dave|8.0
+2026-11-06|10:30:00|Spanish Lessons (no return on investment)|Language School|-5.0
+2024-02-08|19:44:12|Why did the dev refuse to leave Loch Ness? A monster merge conflict|Dave|7.0
+2026-11-06|08:15:33|Diesel Top-Up|Dockside Fuel|-9.5
+2026-04-20|19:02:10|Sailed into a null pointer and ran aground|Dave|12.0
+2026-11-06|04:00:00|joke|Dave|10.76
