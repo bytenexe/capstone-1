@@ -29,10 +29,10 @@ public class CaptainsLog {
 
     public List<LogEntry> getAll() {
         List<LogEntry> sortedEntries = new ArrayList<>(entries);
-        Comparator<LogEntry> byDateThenTime = Comparator
-                .comparing(LogEntry::getDate)
-                .thenComparing(LogEntry::getTime);
-        Collections.sort(sortedEntries, byDateThenTime.reversed());
+        Comparator<LogEntry> byDateThenTime = Comparator // Comparator simplifies lambdas using the :: method reference operator
+                .comparing(LogEntry::getDate) // Comparison rule for LogEntry objects
+                .thenComparing(LogEntry::getTime); // if LogEntryDate1 == LogEntryDate2, :: getTime sorts by time
+        Collections.sort(sortedEntries, byDateThenTime.reversed()); // Flips result order
         return sortedEntries;
     }
 
