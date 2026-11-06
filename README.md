@@ -11,7 +11,7 @@ Search by vendor</p><p>Entries save to <code>transactions.csv</code> as you add 
 <img src="images/Red%20ASCII%20Boat%20Dock%20Illustration.png" alt="ASCII boat banner with Rosie and Dave, red characters on a black background" width="560"><p>The Dock, Captain's Log, and Arrr-chived Dad-abase menus:</p>
 <img src="images/Menu_Tour_Infographic.png" alt="Illustrated menu tour of Captain Dave's Dadloon Dock, Captain's Log and Arrr-chived Dad-abase" width="700"><h2>What You Need</h2><p>Java 17 or higher<br>
 Maven<br>
-IntelliJ IDEA (recommended, and the boat banner gives JetBrains a shout-out)</p><h2>Running It</h2><p><strong>1.</strong> Open the project folder in IntelliJ IDEA as a Maven project.<br>
+IntelliJ IDEA (recommended, and the boat banner gives JetBrains a shout-out and Dave's sponsorship.)</p><h2>Running It</h2><p><strong>1.</strong> Open the project folder in IntelliJ IDEA as a Maven project.<br>
 <strong>2.</strong> Open <code>src/main/java/com/pluralsight/DadloonDock.java</code> and run its <code>main</code> method.<br>
 <strong>3.</strong> Follow the prompts. Talking like a pirate is optional but encouraged.</p><p>If you'd rather use a terminal, run these from the project root:</p>
 <table align="center"><tr><td><pre><code>mvn compile
