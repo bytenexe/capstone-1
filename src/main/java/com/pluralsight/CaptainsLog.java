@@ -77,6 +77,7 @@ public class CaptainsLog {
 
         return payments;
     }
+
     /**
      * This method takes a new LogEntry, adds it to the entries list memory and immediately saves it to the CSV file.
      */
@@ -96,7 +97,7 @@ public class CaptainsLog {
     }
 
     /**
-     * Will check if line (reader.readLine()) is NOT EQUAL TO null; once it is, stops reading because it'll be EQUAL TO null.
+     * Will check if line (reader.readLine()) is NOT EQUAL TO null; once it is, stops reading because it'll be EQUAL TO null
      * Skips the first header using an isFirstLine boolean.
      * entries.add(entry) saves into memory.
      */
@@ -113,17 +114,11 @@ public class CaptainsLog {
 
                 /**
                  * Splits the pipe into array parts (date, time, vendor, description, amount),
-                 * converts the string amount into a double, builds a LogEntry, and saves it to memory.
+                 * Converts the string amount into a double, builds a LogEntry, and saves it to memory.
                  */
                 String[] parts = line.split("\\|");
                 if (parts.length >= 5) {
-                    LogEntry entry = new LogEntry(
-                            parts[0],
-                            parts[1],
-                            parts[2],
-                            parts[3],
-                            Double.parseDouble(parts[4])
-                    );
+                    LogEntry entry = new LogEntry(parts[0], parts[1], parts[2], parts[3], Double.parseDouble(parts[4]));
 
                     entries.add(entry);
                 }
@@ -140,18 +135,14 @@ public class CaptainsLog {
      * Uses BufferedWriter to output data to transactions.csv.
      */
     public void saveTransactions() {
-        try (BufferedWriter writer = new BufferedWriter(
-                new FileWriter("src/main/resources/transactions.csv"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/transactions.csv"))) {
 
             writer.write("date|time|description|vendor|amount"); // Match the exact header from the CSV
             writer.newLine();
 
             for (LogEntry entry : entries) {
                 String line = entry.getDate() + "|" + // date | time | description | vendor | amount
-                        entry.getTime() + "|" +
-                        entry.getDescription() + "|" +
-                        entry.getVendor() + "|" +
-                        entry.getAmount();
+                        entry.getTime() + "|" + entry.getDescription() + "|" + entry.getVendor() + "|" + entry.getAmount();
                 writer.write(line);
                 writer.newLine();
             }

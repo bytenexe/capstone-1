@@ -1,6 +1,8 @@
 package com.pluralsight;
 
 import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 /**
@@ -10,6 +12,7 @@ import java.util.Scanner;
 public class DadloonDock {
     private static Scanner scanner = new Scanner(System.in);
     private static CaptainsLog captainsLog = new CaptainsLog();
+
     private static void monthToDate() {
         System.out.println("Report coming soon...");
     }
@@ -28,7 +31,6 @@ public class DadloonDock {
 
     /**
      * Launches the application, displays the banner, starts the home screen menu and prints a farewell message when exiting.
-     *
      * @param args Command line arguments (not used).
      */
     public static void main(String[] args) {
@@ -134,7 +136,6 @@ public class DadloonDock {
 
     /**
      * Formats and prints a table of transactions with spacing, printing floats, and titles.
-     *
      * @param title   The title banner for the transaction list.
      * @param entries The list of LogEntry items to display.
      */
@@ -157,58 +158,120 @@ public class DadloonDock {
      * Prompts the user for deposit details and records a positive amount (Dadloons hauled in).
      */
     private static void addDeposit() {
-        System.out.print("Enter date (YYYY-MM-DD): ");
-        String date = scanner.nextLine().trim();
-        System.out.print("Enter time (HH:MM:SS): ");
-        String time = scanner.nextLine().trim();
-        System.out.print("Enter vendor: ");
-        String vendor = scanner.nextLine().trim();
-        System.out.print("Enter description: ");
-        String description = scanner.nextLine().trim();
-        System.out.print("Enter amount: ");
-        String amountStr = scanner.nextLine().trim();
-
-        /**
-         * Try/catch block to handle accidental typos like entering letters instead of numbers.
-         * Designed with accessibility in mind (dyslexia-friendly error recovery).
-         */
-        try {
-            double amount = Double.parseDouble(amountStr);
-            LogEntry newEntry = new LogEntry(date, time, description, vendor, amount);
-            captainsLog.addEntry(newEntry);
-            System.out.println("Dadloon hauled in!");
-        } catch (NumberFormatException e) {
-            System.out.println("Yarr, invalid Dadloons. Please use numbers only.");
+        String date = "";
+        while (date.isEmpty()) {
+            System.out.print("Enter date (YYYY-MM-DD): ");
+            date = scanner.nextLine().trim();
+            if (date.isEmpty() || !isValidDate(date)) {
+                System.out.println("Arrr! Invalid date. Use YYYY-MM-DD. Try again.");
+                date = "";
+            }
         }
+
+        String time = "";
+        while (time.isEmpty()) {
+            System.out.print("Enter time (HH:MM:SS): ");
+            time = scanner.nextLine().trim();
+            if (time.isEmpty() || !isValidTime(time)) {
+                System.out.println("Shiver me timbers, invalid time! Use HH:MM:SS. Try again:");
+                time = "";
+            }
+        }
+
+        String vendor = "";
+        while (vendor.isEmpty()) {
+            System.out.print("Enter vendor: ");
+            vendor = scanner.nextLine().trim();
+            if (vendor.isEmpty()) {
+                System.out.println("Avast! Who be payin' or gettin' paid? Name your vendor!");
+            }
+        }
+
+        String description = "";
+        while (description.isEmpty()) {
+            System.out.print("Enter description: ");
+            description = scanner.nextLine().trim();
+            if (description.isEmpty()) {
+                System.out.println("Write a tale for the log! Description can't be blank.");
+            }
+        }
+
+        double amount = 0;
+        boolean validAmount = false;
+        while (!validAmount) {
+            System.out.print("Enter amount: ");
+            String amountStr = scanner.nextLine().trim();
+            try {
+                amount = Double.parseDouble(amountStr);
+                validAmount = true;
+            } catch (NumberFormatException e) {
+                System.out.println("Yarr, invalid Dadloons. Please use numbers only.");
+            }
+        }
+
+        LogEntry newEntry = new LogEntry(date, time, description, vendor, amount);
+        captainsLog.addEntry(newEntry);
+        System.out.println("Dadloon hauled in!");
     }
 
     /**
      * Prompts the user for payment details and converts the entered amount into a negative value (-amount) for money spent.
      */
     private static void makePayment() {
-        System.out.print("Enter date (YYYY-MM-DD): ");
-        String date = scanner.nextLine().trim();
-        System.out.print("Enter time (HH:MM:SS): ");
-        String time = scanner.nextLine().trim();
-        System.out.print("Enter vendor: ");
-        String vendor = scanner.nextLine().trim();
-        System.out.print("Enter description: ");
-        String description = scanner.nextLine().trim();
-        System.out.print("Enter amount: ");
-        String amountStr = scanner.nextLine().trim();
-
-        /**
-         * Try/catch block to handle accidental typos like entering letters instead of numbers.
-         * Designed with accessibility in mind (dyslexia-friendly error recovery).
-         */
-        try {
-            double amount = Double.parseDouble(amountStr);
-            LogEntry newEntry = new LogEntry(date, time, description, vendor, -amount);
-            captainsLog.addEntry(newEntry);
-            System.out.println("Loot surrendered to the Harbor Master.");
-        } catch (NumberFormatException e) {
-            System.out.println("Yarr, invalid Dadloons. Use numbers only, or walk the plank!.");
+        String date = "";
+        while (date.isEmpty()) {
+            System.out.print("Enter date (YYYY-MM-DD): ");
+            date = scanner.nextLine().trim();
+            if (date.isEmpty() || !isValidDate(date)) {
+                System.out.println("Arrr! Invalid date. Use YYYY-MM-DD. Try again.");
+                date = "";
+            }
         }
+
+        String time = "";
+        while (time.isEmpty()) {
+            System.out.print("Enter time (HH:MM:SS): ");
+            time = scanner.nextLine().trim();
+            if (time.isEmpty() || !isValidTime(time)) {
+                System.out.println("Shiver me timbers, invalid time! Use HH:MM:SS. Try again:");
+                time = "";
+            }
+        }
+
+        String vendor = "";
+        while (vendor.isEmpty()) {
+            System.out.print("Enter vendor: ");
+            vendor = scanner.nextLine().trim();
+            if (vendor.isEmpty()) {
+                System.out.println("Avast! Who be payin' or gettin' paid? Name your vendor!");
+            }
+        }
+
+        String description = "";
+        while (description.isEmpty()) {
+            System.out.print("Enter description: ");
+            description = scanner.nextLine().trim();
+            if (description.isEmpty()) {
+                System.out.println("Write a tale for the log! Description can't be blank.");
+            }
+        }
+
+        double amount = 0;
+        boolean validAmount = false;
+        while (!validAmount) {
+            System.out.print("Enter amount: ");
+            String amountStr = scanner.nextLine().trim();
+            try {
+                amount = Double.parseDouble(amountStr);
+                validAmount = true;
+            } catch (NumberFormatException e) {
+                System.out.println("Yarr, invalid Dadloons. Use numbers only, or walk the plank!.");
+            }
+        }
+
+        LogEntry newEntry = new LogEntry(date, time, description, vendor, -amount);
+        captainsLog.addEntry(newEntry);
+        System.out.println("Loot surrendered to the Harbor Master.");
     }
 
     /**
@@ -219,5 +282,29 @@ public class DadloonDock {
         String vendor = scanner.nextLine().trim();
         List<LogEntry> results = captainsLog.getEntriesByVendor(vendor);
         displayTransactions("VENDOR: " + vendor.toUpperCase(), results);
+    }
+
+    /**
+     * Validates the date string format using LocalDate.
+     */
+    private static boolean isValidDate(String date) {
+        try {
+            LocalDate.parse(date);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * Validates the time string format using LocalTime.
+     */
+    private static boolean isValidTime(String time) {
+        try {
+            LocalTime.parse(time);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
