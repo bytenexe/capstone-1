@@ -46,7 +46,6 @@ public class CaptainsLog {
         return deposits;
     }
 
-
     /**
      * Filters through the entries list to find all negative amounts (Payments / Dadloons Spent).
      *
@@ -78,7 +77,7 @@ public class CaptainsLog {
                 results.add(entry);
             }
         }
-        sortEntries(results); //
+        sortEntries(results); //helper method
         return results;
     }
 
