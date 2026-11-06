@@ -79,7 +79,7 @@ public class DadloonDock {
                 case "P" -> makePayment();
                 case "L" -> ledgerScreen();
                 case "X" -> running = false;
-                default -> System.out.println("That is not a heading, sailor. Try D, P, L, or X.");
+                default -> System.out.println("That is not a heading, mate. Try D, P, L, or X.");
             }
         }
     }
@@ -98,7 +98,7 @@ public class DadloonDock {
             System.out.println("P) Dadloons Spent");
             System.out.println("R) Arrr-chived Dad-abase");
             System.out.println("H) Home Port");
-            System.out.print("Choose an option: ");
+            System.out.print("Change yer course: ");
 
             String choice = scanner.nextLine().trim().toUpperCase();
 
@@ -109,7 +109,7 @@ public class DadloonDock {
                 case "P" -> displayTransactions("DADLOONS SPENT", captainsLog.getPayments());
                 case "R" -> reportsScreen();
                 case "H" -> running = false;
-                default -> System.out.println("That is not a heading, sailor. Try A, D, P, R, or H.");
+                default -> System.out.println("That is not a heading, mate. Try A, D, P, R, or H.");
             }
         }
     }
