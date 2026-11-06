@@ -193,7 +193,7 @@ public class DadloonDock {
             System.out.print("Enter time (HH:MM:SS): ");
             time = scanner.nextLine().trim();
             if (time.isEmpty() || !isValidTime(time)) {
-                System.out.println("Shiver me timbers, invalid time! Use HH:MM:SS. Try again:");
+                System.out.println("Shiver me timbers, invalid time! Use HH:MM:SS:");
                 time = "";
             }
         }
@@ -224,6 +224,12 @@ public class DadloonDock {
             try {
                 amount = Double.parseDouble(amountStr);
                 validAmount = true;
+
+                if (amount == 0) {
+                    System.out.println("Yarr! A Dadloon of zero is no haul at all. Enter a non-zero amount.");
+                } else {
+                    validAmount = true;
+                }
             } catch (NumberFormatException e) {
                 System.out.println("Yarr, invalid Dadloons. Please use numbers only.");
             }
@@ -243,7 +249,7 @@ public class DadloonDock {
             System.out.print("Enter date (YYYY-MM-DD): ");
             date = scanner.nextLine().trim();
             if (date.isEmpty() || !isValidDate(date)) {
-                System.out.println("Arrr! Invalid date. Use YYYY-MM-DD. Try again.");
+                System.out.println("Arrr! Invalid date. Use YYYY-MM-DD: ");
                 date = "";
             }
         }
@@ -253,7 +259,7 @@ public class DadloonDock {
             System.out.print("Enter time (HH:MM:SS): ");
             time = scanner.nextLine().trim();
             if (time.isEmpty() || !isValidTime(time)) {
-                System.out.println("Shiver me timbers, invalid time! Use HH:MM:SS. Try again:");
+                System.out.println("Shiver me timbers, invalid time! Use HH:MM:SS:");
                 time = "";
             }
         }
@@ -283,7 +289,12 @@ public class DadloonDock {
             String amountStr = scanner.nextLine().trim();
             try {
                 amount = Double.parseDouble(amountStr);
-                validAmount = true;
+
+                if (amount == 0) {
+                    System.out.println("Yarr! You can't pay zero Dadloons to the Harbor Master. Enter a non-zero amount.");
+                } else {
+                    validAmount = true;
+                }
             } catch (NumberFormatException e) {
                 System.out.println("Yarr, invalid Dadloons. Use numbers only, or walk the plank!");
             }
