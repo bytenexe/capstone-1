@@ -1,8 +1,10 @@
 package com.pluralsight;
 
+import java.time.LocalDate;
+
 /**
  * LogEntry (Transactions.java)
- * Represents an individual transaction item.
+ * Represents an individual transaction item.  (POJO)
  * Stores the following fields: date, time, description, vendor, amount.
  */
 public class LogEntry {

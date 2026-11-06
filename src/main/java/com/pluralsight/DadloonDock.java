@@ -31,7 +31,7 @@ public class DadloonDock {
     }
 
     /**
-     * Runs the main dock menu loop allowing the user to navigate between deposits payments, the ledger, or exiting the application.
+     * Runs the Main Menu loop allowing the user to navigate between deposits payments, the ledger, or exiting the application.
      */
     private static void homeScreen() {
         boolean running = true;
@@ -70,6 +70,7 @@ public class DadloonDock {
             System.out.println("A) Full Log");
             System.out.println("D) Jokes Told");
             System.out.println("P) Dadloons Spent");
+            System.out.println("R) Arrr-chived Dad-abase");
             System.out.println("H) Home Port");
             System.out.print("Choose an option: ");
 
@@ -80,11 +81,43 @@ public class DadloonDock {
                 case "A" -> displayTransactions("FULL LOG", captainsLog.getAll());
                 case "D" -> displayTransactions("JOKES TOLD", captainsLog.getDeposits());
                 case "P" -> displayTransactions("DADLOONS SPENT", captainsLog.getPayments());
+                case "R" -> reportsScreen();
                 case "H" -> running = false;
-                default -> System.out.println("That is not a heading, sailor. Try A, D, P, or H.");
+                default -> System.out.println("That is not a heading, sailor. Try A, D, P, R, or H.");
             }
         }
     }
+
+    /**
+     * Runs reports (R) menu from the ledger (L) screen
+     * Lets the user flip through pre-defined searches (Month to Date, Previous Month, Year to Date, etc.).
+     */
+    private static void reportsScreen() {
+        boolean running = true;
+        while (running) {
+            System.out.println();
+            System.out.println("===== ARR-CHIVE DAD-ABASE =====");
+            System.out.println("1) Month To Date");
+            System.out.println("2) Previous Month");
+            System.out.println("3) Year To Date");
+            System.out.println("4) Previous Year");
+            System.out.println("5) Search by Vendor");
+            System.out.println("0) Sail Away");
+            System.out.print("Choose yer chart, mate: ");
+            String choice = scanner.nextLine().trim();
+            switch (choice) {
+                case "1" -> monthToDate();
+                case "2" -> previousMonth();
+                case "3" -> yearToDate();
+                case "4" -> previousYear();
+                case "5" -> searchByVendor();
+                case "0" -> running = false;
+                default -> System.out.println("No such entry in the captain's log!");
+            }
+        }
+    }
+
+
 
     /**
      * Formats and prints a table of transactions with spacing, printing floats, and titles.
