@@ -1,6 +1,6 @@
 package com.pluralsight;
 
-import java.util.*;
+import java.util.*; // Includes all java.utils
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -70,7 +70,7 @@ public class CaptainsLog {
         // Comparator simplifies lambdas using the :: method reference operator
         Comparator<LogEntry> byDateThenTime = Comparator // Comparison rule for LogEntry objects
                 .comparing(LogEntry::getDate) // Takes date and compares each entry; sorts ascending by default
-                .thenComparing(LogEntry::getTime); // if LogEntryDate1 == LogEntryDate2, ::getTime sorts by time
+                .thenComparing(LogEntry::getTime); // if LogEntryDate1 == LogEntryDate2, :: getTime sorts by time
         payments.sort(byDateThenTime.reversed()); // Flips result order
 
         return payments;
@@ -91,6 +91,13 @@ public class CaptainsLog {
                 results.add(entry);
             }
         }
+
+        // Comparator simplifies lambdas using the :: method reference operator
+        Comparator<LogEntry> byDateThenTime = Comparator // Comparison rule for LogEntry objects
+                .comparing(LogEntry::getDate) // Takes date and compares each entry; sorts ascending by default
+                .thenComparing(LogEntry::getTime); // if LogEntryDate1 == LogEntryDate2, :: getTime sorts by time
+        Collections.sort(results, byDateThenTime.reversed());
+
         return results;
     }
 
@@ -111,7 +118,7 @@ public class CaptainsLog {
                 }
 
                 /**
-                 * Splits the pipe into array parts (date, time, vendor, description, amount),
+                 * // Splits the pipe into array parts (date, time, description, vendor, amount).
                  * Converts the string amount into a double, builds a LogEntry, and saves it to memory.
                  **/
                 String[] parts = line.split("\\|");

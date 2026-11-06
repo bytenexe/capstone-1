@@ -110,36 +110,23 @@ public class DadloonDock {
             switch (choice) {
                 case "1" -> {
                     monthToDate();
-                    promptToContinue();
                 }
                 case "2" -> {
                     previousMonth();
-                    promptToContinue();
                 }
                 case "3" -> {
                     yearToDate();
-                    promptToContinue();
                 }
                 case "4" -> {
                     previousYear();
-                    promptToContinue();
                 }
                 case "5" -> {
                     searchByVendor();
-                    promptToContinue();
                 }
                 case "0" -> running = false;
                 default -> System.out.println("No such entry in the captain's log!");
             }
         }
-    }
-
-    /**
-     * Pauses the report view so the user can inspect entries before returning to the Reports menu.
-     **/
-    private static void promptToContinue() {
-        System.out.println("\nPress Enter to return to the arr-chive dad-abase.");
-        scanner.nextLine();
     }
 
     /**
