@@ -26,10 +26,7 @@ public class CaptainsLog {
 
     public List<LogEntry> getAll() {
         List<LogEntry> sortedEntries = new ArrayList<>(entries);
-        Comparator<LogEntry> byDateThenTime = Comparator // Comparator simplifies lambdas using the :: method reference operator
-                .comparing(LogEntry::getDate) // Comparison rule for LogEntry objects
-                .thenComparing(LogEntry::getTime); // if LogEntryDate1 == LogEntryDate2, :: getTime sorts by time
-        Collections.sort(sortedEntries, byDateThenTime.reversed()); // Flips result order
+        sortEntries(sortedEntries); // <-- Replaces the 4 lines of Comparator code
         return sortedEntries;
     }
 
@@ -45,14 +42,10 @@ public class CaptainsLog {
                 deposits.add(entry);
             }
         }
-
-        // Comparator simplifies lambdas using the :: method reference operator
-        Comparator<LogEntry> byDateThenTime = Comparator // Comparison rule for LogEntry objects
-                .comparing(LogEntry::getDate) // Takes date and compares each entry; sorts ascending by default
-                .thenComparing(LogEntry::getTime); // if LogEntryDate1 == LogEntryDate2, :: getTime sorts by time
-        Collections.sort(deposits, byDateThenTime.reversed()); // Flips result order
+        sortEntries(deposits); // <-- Replaces the 4 lines of Comparator code
         return deposits;
     }
+
 
     /**
      * Filters through the entries list to find all negative amounts (Payments / Dadloons Spent).
@@ -66,13 +59,7 @@ public class CaptainsLog {
                 payments.add(entry);
             }
         }
-
-        // Comparator simplifies lambdas using the :: method reference operator
-        Comparator<LogEntry> byDateThenTime = Comparator // Comparison rule for LogEntry objects
-                .comparing(LogEntry::getDate) // Takes date and compares each entry; sorts ascending by default
-                .thenComparing(LogEntry::getTime); // if LogEntryDate1 == LogEntryDate2, :: getTime sorts by time
-        payments.sort(byDateThenTime.reversed()); // Flips result order
-
+        sortEntries(payments); // <-- Replaces the 4 lines of Comparator code
         return payments;
     }
 
@@ -91,13 +78,7 @@ public class CaptainsLog {
                 results.add(entry);
             }
         }
-
-        // Comparator simplifies lambdas using the :: method reference operator
-        Comparator<LogEntry> byDateThenTime = Comparator // Comparison rule for LogEntry objects
-                .comparing(LogEntry::getDate) // Takes date and compares each entry; sorts ascending by default
-                .thenComparing(LogEntry::getTime); // if LogEntryDate1 == LogEntryDate2, :: getTime sorts by time
-        Collections.sort(results, byDateThenTime.reversed());
-
+        sortEntries(results); // <-- Replaces the 4 lines of Comparator code
         return results;
     }
 
@@ -142,15 +123,14 @@ public class CaptainsLog {
      * Writes the pipe header row first ("date|time|description|vendor|amount").
      * Loops through every entry in memory and writes it out row-by-row.
      * Uses BufferedWriter to output data to transactions.csv.
-     **/
+     */
     public void saveTransactions() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/transactions.csv"))) {
-
             writer.write("date|time|description|vendor|amount"); // Match the exact header from the CSV
             writer.newLine();
 
             for (LogEntry entry : entries) {
-                String line = entry.getDate() + "|" + // date | time | description | vendor | amount
+                String line = entry.getDate() + "|" +
                         entry.getTime() + "|" + entry.getDescription() + "|" + entry.getVendor() + "|" + entry.getAmount();
                 writer.write(line);
                 writer.newLine();
@@ -158,5 +138,16 @@ public class CaptainsLog {
         } catch (IOException e) {
             System.out.println("Arr, mate! Failed to log yer Dadloons. Give 'er another haul!: " + e.getMessage());
         }
+    }
+
+    /**
+     * Sorts a list of LogEntries by date and then time, in reverse chronological order (newest first).
+     */
+    private void sortEntries(List<LogEntry> list) {
+        // Comparator simplifies lambdas using the :: method reference operator
+        Comparator<LogEntry> byDateThenTime = Comparator // Comparison rule for LogEntry objects
+                .comparing(LogEntry::getDate) // Takes date and compares each entry; sorts ascending by default
+                .thenComparing(LogEntry::getTime); // if LogEntryDate1 == LogEntryDate2, :: getTime sorts by time
+        Collections.sort(list, byDateThenTime.reversed()); // Changed 'results' to 'list'
     }
 }
