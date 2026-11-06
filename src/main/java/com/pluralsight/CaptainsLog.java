@@ -52,9 +52,9 @@ public class CaptainsLog {
                 .comparing(LogEntry::getDate) // Takes date and compares each entry; sorts ascending by default
                 .thenComparing(LogEntry::getTime); // if LogEntryDate1 == LogEntryDate2, :: getTime sorts by time
         Collections.sort(deposits, byDateThenTime.reversed()); // Flips result order
-
         return deposits;
     }
+
 
     /**
      * Filters through the entries list to find all negative amounts (Payments / Dadloons Spent).
