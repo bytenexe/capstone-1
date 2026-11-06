@@ -50,11 +50,11 @@ public class CaptainsLog {
             }
         }
 
-        // Sort the deposits list
-        Comparator<LogEntry> byDateThenTime = Comparator
-                .comparing(LogEntry::getDate)
-                .thenComparing(LogEntry::getTime);
-        Collections.sort(deposits, byDateThenTime.reversed());
+        // Comparator simplifies lambdas using the :: method reference operator
+        Comparator<LogEntry> byDateThenTime = Comparator // Comparison rule for LogEntry objects
+                .comparing(LogEntry::getDate) // Takes date and compares each entry; sorts ascending by default
+                .thenComparing(LogEntry::getTime); // if LogEntryDate1 == LogEntryDate2, ::getTime sorts by time
+        Collections.sort(deposits, byDateThenTime.reversed()); // Flips result order
 
         return deposits;
     }
@@ -72,11 +72,11 @@ public class CaptainsLog {
             }
         }
 
-        // Sort the payments list
-        Comparator<LogEntry> byDateThenTime = Comparator
-                .comparing(LogEntry::getDate)
-                .thenComparing(LogEntry::getTime);
-        Collections.sort(payments, byDateThenTime.reversed());
+        // Comparator implifies lambdas using the :: method reference operator
+        Comparator<LogEntry> byDateThenTime = Comparator // Comparison rule for LogEntry objects
+                .comparing(LogEntry::getDate) // Takes date and compares each entry; sorts ascending by default
+                .thenComparing(LogEntry::getTime); // if LogEntryDate1 == LogEntryDate2, ::getTime sorts by time
+        payments.sort(byDateThenTime.reversed()); // Flips result order
 
         return payments;
     }
