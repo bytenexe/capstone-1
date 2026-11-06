@@ -26,7 +26,7 @@ public class CaptainsLog {
 
     public List<LogEntry> getAll() {
         List<LogEntry> sortedEntries = new ArrayList<>(entries);
-        sortEntries(sortedEntries); 
+        sortEntries(sortedEntries); // //helper method
         return sortedEntries;
     }
 
@@ -42,7 +42,7 @@ public class CaptainsLog {
                 deposits.add(entry);
             }
         }
-        sortEntries(deposits); 
+        sortEntries(deposits); // helper method
         return deposits;
     }
 
@@ -59,7 +59,7 @@ public class CaptainsLog {
                 payments.add(entry);
             }
         }
-        sortEntries(payments); 
+        sortEntries(payments); // helper method
         return payments;
     }
 
@@ -78,7 +78,7 @@ public class CaptainsLog {
                 results.add(entry);
             }
         }
-        sortEntries(results); 
+        sortEntries(results); //
         return results;
     }
 
@@ -134,10 +134,12 @@ public class CaptainsLog {
                         entry.getTime() + "|" + entry.getDescription() + "|" + entry.getVendor() + "|" + entry.getAmount();
                 writer.write(line);
                 writer.newLine();
+                writer.close();
             }
         } catch (IOException e) {
             System.out.println("Arr, mate! Failed to log yer Dadloons. Give 'er another haul!: " + e.getMessage());
         }
+
     }
 
     /**
@@ -148,6 +150,6 @@ public class CaptainsLog {
         Comparator<LogEntry> byDateThenTime = Comparator // Comparison rule for LogEntry objects
                 .comparing(LogEntry::getDate) // Takes date and compares each entry; sorts ascending by default
                 .thenComparing(LogEntry::getTime); // if LogEntryDate1 == LogEntryDate2, :: getTime sorts by time
-        Collections.sort(list, byDateThenTime.reversed()); // Changed 'results' to 'list'
+        Collections.sort(list, byDateThenTime.reversed()); // reverses to descending
     }
 }
